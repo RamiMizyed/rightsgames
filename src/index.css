@@ -1,13 +1,213 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		@apply bg-slate-50;
+	}
+	h1 {
+		@apply text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white p-6 rounded-lg;
+	}
+	.topWall {
+		border-top: 4px solid rgb(180, 6, 113);
+		background-color: white;
+	}
+	.rightWall {
+		border-right: 4px solid rgb(180, 6, 113);
+		background-color: white;
+	}
+	.bottomWall {
+		border-bottom: 4px solid rgb(180, 6, 113);
+		background-color: white;
+	}
+	.leftWall {
+		border-left: 4px solid rgb(180, 6, 113);
+		background-color: white;
+	}
+	#maze {
+		border-collapse: collapse;
+	}
+	#maze td {
+		@apply h-[54px] md:h-[74px] lg:h-[110px] w-[54px] md:w-[74px] lg:w-[110px] bg-white;
+	}
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.currentPosition div {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url('./assets/icons8-walking.gif');
+	background-size: cover;
+	height: 80%;
+	width: 80%;
+}
+.img1 div {
+	background: url('./assets/img/image37.png');
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	background-size: contain;
+	height: 90%;
+	width: 90%;
+}
+.img2 div {
+	background: url('./assets/img/image22.png');
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	background-size: contain;
+	height: 90%;
+	width: 90%;
+}
+.img3 div {
+	background: url('./assets/img/image26.png');
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	background-size: contain;
+	height: 90%;
+	width: 90%;
+}
+.img4 div {
+	background: url('./assets/img/image25.png');
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	background-size: contain;
+	height: 90%;
+	width: 90%;
+}
+.img5 div {
+	background: url('./assets/img/image1.png');
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	background-size: contain;
+	height: 90%;
+	width: 90%;
+}
+.img6 div {
+	background: url('./assets/img/image27.png');
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	background-size: contain;
+	height: 90%;
+	width: 90%;
+}
+.img7 div {
+	background: url('./assets/img/image19.png');
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	background-size: contain;
+	height: 90%;
+	width: 90%;
+}
+.img8 div {
+	background: url('./assets/img/image18.png');
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	background-size: contain;
+	height: 90%;
+	width: 90%;
+}
+
+.img9 div {
+	background: url('./assets/img/image18.png');
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	background-size: contain;
+	height: 90%;
+	width: 90%;
+}
+.img10 div {
+	background: url('./assets/img/image12.png');
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	background-size: contain;
+	height: 90%;
+	width: 90%;
+}
+.currentPosition.img1 div {
+	background-image: url('./assets/icons8-party.gif');
+}
+.currentPosition.img2 div {
+	background-image: url('./assets/icons8-party.gif');
+}
+.currentPosition.img3 div {
+	background-image: url('./assets/icons8-party.gif');
+}
+.currentPosition.img4 div {
+	background-image: url('./assets/icons8-party.gif');
+}
+.currentPosition.img5 div {
+	background-image: url('./assets/icons8-party.gif');
+}
+.currentPosition.img6 div {
+	background-image: url('./assets/icons8-party.gif');
+}
+.currentPosition.img7 div {
+	background-image: url('./assets/icons8-party.gif');
+}
+.currentPosition.img8 div {
+	background-image: url('./assets/icons8-party.gif');
+}
+.currentPosition.img9 div {
+	background-image: url('./assets/icons8-party.gif');
+}
+.currentPosition.img10 div {
+	background-image: url('./assets/icons8-party.gif');
+}
+
+.sol div {
+	z-index: 0;
+	height: 50%;
+	width: 50%;
+	border-radius: 50%;
+	background: peachpuff;
+}
+.backgroundOne {
+	background-image: url('./assets/ColoredShapes.svg');
+	background-size: cover;
+	-webkit-animation: animate 50s ease-in-out infinite;
+	-moz-animation: animate 50s ease-in-out infinite;
+	animation: animate 50s ease-in-out infinite;
+}
+.background-animate-longest {
+	background-size: 400%;
+
+	-webkit-animation: animate 15s ease-in-out infinite;
+	-moz-animation: animate 15s ease-in-out infinite;
+	animation: animate 15s ease-in-out infinite;
+}
+.background-animate-slowest {
+	background-size: 120%;
+
+	-webkit-animation: animate 50s ease-in-out infinite;
+	-moz-animation: animate 50s ease-in-out infinite;
+	animation: animate 50s ease-in-out infinite;
+}
+@keyframes animate {
+	0%,
+	100% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
 }
