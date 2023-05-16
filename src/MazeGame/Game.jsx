@@ -4,14 +4,11 @@ import { BsFillArrowDownSquareFill, BsFillArrowLeftSquareFill, BsFillArrowRightS
 import { questions } from '../questions/questions';
 import { HamburgerMenu } from '../Components/NavBar';
 
-import SongFirst from '../assets/Audio/GameMusic1.mp3'
-import Yay from '../assets/Audio/yaay.mp3'
-import AudioPlayer from "../Components/AudioPlayer";
+
 import LoadingAnimation from "../Components/LoadingAnimation";
 export default function Game() {
     const [gameId, setGameId] = useState(1);
     const [questionId, setQuestionId] = useState(0)
-    const [audioLevel, setAudioLevel] = useState(0.01)
     const [currentLevel, setCurrentLevel] = useState(1)
     const [status, setStatus] = useState("playing");
     // const [solved, setSolve] = useState(false)
@@ -109,51 +106,35 @@ export default function Game() {
 
     return (
         <Suspense fallback={<LoadingAnimation />}>
-            <div className="fixed  z-50 top-0 left-0 p-6">
-                <HamburgerMenu />
-                {/* <AudioPlayer audioLevel={audioLevel} audioPath={SongFirst} />
-                {status === 'won' && (
-                    <AudioPlayer audioLevel={audioLevel} audioPath={Yay} />
-                )}
-                <div>
-                    <input className="mt-6" type="range" min={0} max={1} step={0.01} value={audioLevel} onChange={(e) => {
-                        try {
-                            setAudioLevel(e.target.value)
-                        }
-                        catch (error) {
-                            console.error(error)
-                        }
-                    }
-                    } />
+            <div className="w-full h-[100vh]">
+                <div className="fixed  z-50 top-0 left-0 p-6">
+                    <HamburgerMenu status={status} />
+
                 </div>
-                <div className=" text-3xl text-white flex flex-col gap-3 mb-6">
-                    <h2 className="flex text-center w-full">{questions[questionId].choices[questions[questionId].correct - 1]}</h2>
-                    <h2 className="flex text-center w-full">{`Current Level is : ${currentLevel}`}</h2>
-                </div> */}
-            </div>
-            <div className="flex relative  items-center justify-center w-full h-screen border-none  focus:outline-none backgroundGame background-animate-slowest " onKeyDown={handleMove} tabIndex={-1}>
-                <div>
-                    <table id="maze"  >
-                        <tbody >
-                            {maze.map((row, i) => (
-                                <tr key={`row-${i}`}>
-                                    {row.map((cell, j) => (
-                                        <td key={`cell-${i}-${j}`} className={makeClassName(i, j)}>
-                                            <div />
-                                        </td>
-                                    ))}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                <div className=" text-3xl text-white flex flex-col gap-3 mb-6">
-                    <h2 className="flex text-center w-52 ">'W' 'A' 'S' 'D'</h2>
-                    <div className="flex gap-3 w-52 ">
-                        <BsFillArrowUpSquareFill className="text-emerald-400" />
-                        <BsFillArrowLeftSquareFill className="text-emerald-400" />
-                        <BsFillArrowDownSquareFill className="text-emerald-400" />
-                        <BsFillArrowRightSquareFill className="text-emerald-400" />
+                <div className="flex relative  items-center justify-center w-full h-screen border-none  focus:outline-none backgroundGame background-animate-slowest " onKeyDown={handleMove} tabIndex={-1}>
+                    <div>
+                        <table id="maze"  >
+                            <tbody >
+                                {maze.map((row, i) => (
+                                    <tr key={`row-${i}`}>
+                                        {row.map((cell, j) => (
+                                            <td key={`cell-${i}-${j}`} className={makeClassName(i, j)}>
+                                                <div />
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className=" text-3xl text-white flex flex-col gap-3 mb-6">
+                        <h2 className="flex text-center w-52 ">'W' 'A' 'S' 'D'</h2>
+                        <div className="flex gap-3 w-52 ">
+                            <BsFillArrowUpSquareFill className="text-emerald-400" />
+                            <BsFillArrowLeftSquareFill className="text-emerald-400" />
+                            <BsFillArrowDownSquareFill className="text-emerald-400" />
+                            <BsFillArrowRightSquareFill className="text-emerald-400" />
+                        </div>
                     </div>
                 </div>
             </div>

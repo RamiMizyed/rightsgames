@@ -8,7 +8,7 @@
 		font-family: 'Darumadrop One', cursive;
 	}
 	h1 {
-		@apply text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white p-6 rounded-lg;
+		@apply text-xl sm:text-2xl md:text-4xl lg:text-5xl z-20 font-semibold text-white p-6 rounded-lg;
 	}
 	.topWall {
 		border-top: 4px solid rgb(180, 6, 113);
