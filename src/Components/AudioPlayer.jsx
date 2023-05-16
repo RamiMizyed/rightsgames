@@ -1,14 +1,14 @@
 import React, { useRef, useEffect } from 'react'
-import SongFirst from '../assets/Audio/GameMusic1.mp3'
 
-const AudioPlayer = () => {
+const AudioPlayer = (props) => {
     const songRef = useRef(null)
     useEffect(() => {
+        songRef.current.volume = props.audioLevel
         songRef.current.play()
-    }, [])
+    }, [props.audioLevel])
 
     return (
-        <audio src={SongFirst} ref={songRef} loop ></audio>
+        <audio src={props.audioPath} ref={songRef} loop   ></audio>
     )
 }
 

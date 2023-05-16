@@ -1,35 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
 @layer base {
 	html {
 		@apply bg-slate-50;
+		font-family: 'Darumadrop One', cursive;
 	}
 	h1 {
 		@apply text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white p-6 rounded-lg;
 	}
 	.topWall {
 		border-top: 4px solid rgb(180, 6, 113);
-		background-color: white;
 	}
 	.rightWall {
 		border-right: 4px solid rgb(180, 6, 113);
-		background-color: white;
 	}
 	.bottomWall {
 		border-bottom: 4px solid rgb(180, 6, 113);
-		background-color: white;
 	}
 	.leftWall {
 		border-left: 4px solid rgb(180, 6, 113);
-		background-color: white;
 	}
 	#maze {
 		border-collapse: collapse;
 	}
 	#maze td {
-		@apply h-[54px] md:h-[74px] lg:h-[110px] w-[54px] md:w-[74px] lg:w-[110px] bg-white;
+		@apply h-[44px] md:h-[64px] lg:h-[100px] w-[44px] md:w-[64px] lg:w-[100px] bg-white;
 	}
 }
 
@@ -37,27 +34,25 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	background-image: url('./assets/icons8-walking.gif');
+	background-image: url('./assets/run-busy.gif');
 	background-size: cover;
-	height: 80%;
-	width: 80%;
+	height: 100%;
+	width: 100%;
 }
 .img1 div {
 	background: url('./assets/img/image37.png');
-	display: block;
+	display: flex;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid black;
 	background-size: contain;
-	height: 90%;
-	width: 90%;
+	height: 100%;
+	width: 100%;
 }
 .img2 div {
 	background: url('./assets/img/image22.png');
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid black;
 	background-size: contain;
 	height: 90%;
 	width: 90%;
@@ -67,7 +62,6 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid black;
 	background-size: contain;
 	height: 90%;
 	width: 90%;
@@ -77,7 +71,6 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid black;
 	background-size: contain;
 	height: 90%;
 	width: 90%;
@@ -87,7 +80,6 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid black;
 	background-size: contain;
 	height: 90%;
 	width: 90%;
@@ -97,7 +89,6 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid black;
 	background-size: contain;
 	height: 90%;
 	width: 90%;
@@ -107,7 +98,6 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid black;
 	background-size: contain;
 	height: 90%;
 	width: 90%;
@@ -117,7 +107,6 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid black;
 	background-size: contain;
 	height: 90%;
 	width: 90%;
@@ -128,7 +117,6 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid black;
 	background-size: contain;
 	height: 90%;
 	width: 90%;
@@ -138,7 +126,6 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid black;
 	background-size: contain;
 	height: 90%;
 	width: 90%;

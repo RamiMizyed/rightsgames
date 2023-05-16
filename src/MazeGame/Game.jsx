@@ -1,14 +1,21 @@
-import React, { useState, useMemo, useEffect, useRef } from "react";
+import React, { useState, useMemo, useEffect, useRef, Suspense } from "react";
 import { generateMaze, solve } from "./utils";
 import { BsFillArrowDownSquareFill, BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill, BsFillArrowUpSquareFill } from 'react-icons/bs'
 import { questions } from '../questions/questions';
+import { HamburgerMenu } from '../Components/NavBar';
+
+import SongFirst from '../assets/Audio/GameMusic1.mp3'
+import Yay from '../assets/Audio/yaay.mp3'
 import AudioPlayer from "../Components/AudioPlayer";
+import LoadingAnimation from "../Components/LoadingAnimation";
 export default function Game() {
     const [gameId, setGameId] = useState(1);
     const [questionId, setQuestionId] = useState(0)
+    const [audioLevel, setAudioLevel] = useState(0.01)
+    const [currentLevel, setCurrentLevel] = useState(1)
     const [status, setStatus] = useState("playing");
-    const [solved, setSolve] = useState(false)
-    const size = 6
+    // const [solved, setSolve] = useState(false)
+    const [size, setSize] = useState(4)
     const [userPosition, setUserPosition] = useState([0, 0]);
     const maze = useMemo(() => generateMaze(size, size), [size, gameId]);
     const solution = useMemo(() => {
@@ -24,18 +31,26 @@ export default function Game() {
     useEffect(() => {
         const lastRowIndex = maze.length - 1;
         const lastColIndex = maze[0].length - 1;
-
         if (userPosition[0] === lastRowIndex && userPosition[1] === lastColIndex) {
             setStatus("won");
             setTimeout(() => {
                 handleUpdateSettings()
                 if (questionId === 9) {
                     setQuestionId(0)
+                    setSize(4)
+                    setCurrentLevel(1)
                 } else {
                     setQuestionId(questionId + 1)
+                    if (size < 8) {
+                        setSize(size + 1)
+                    } else {
+                        setSize(8)
+                    }
                 }
+                setCurrentLevel(currentLevel + 1)
             }, 2000)
         }
+        console.log(size);
     }, [userPosition[0], userPosition[1]]);
 
     const makeClassName = (i, j) => {
@@ -60,12 +75,11 @@ export default function Game() {
         if (i === userPosition[0] && j === userPosition[1]) {
             arr.push("currentPosition");
         }
-        if (solved && solution.has(String(i) + "-" + String(j))) {
-            arr.push("sol");
-        }
+        // if (solved && solution.has(String(i) + "-" + String(j))) {
+        //     arr.push("sol");
+        // }
         return arr.join(" ");
     };
-
     const handleMove = (e) => {
         e.preventDefault();
         if (status !== "playing") {
@@ -87,7 +101,6 @@ export default function Game() {
             setUserPosition([i, j - 1]);
         }
     };
-
     const handleUpdateSettings = () => {
         setUserPosition([0, 0]);
         setStatus("playing");
@@ -95,35 +108,55 @@ export default function Game() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-screen border-none  focus:outline-none backgroundGame background-animate-slowest " onKeyDown={handleMove} tabIndex={-1}>
-            <AudioPlayer />
-            <div className=" text-3xl text-white flex flex-col gap-3 mb-6">
-                <h2 className="flex text-center w-full">{questions[questionId].choices[questions[questionId].correct - 1]}</h2>
+        <Suspense fallback={<LoadingAnimation />}>
+            <div className="fixed  z-50 top-0 left-0 p-6">
+                <HamburgerMenu />
+                {/* <AudioPlayer audioLevel={audioLevel} audioPath={SongFirst} />
+                {status === 'won' && (
+                    <AudioPlayer audioLevel={audioLevel} audioPath={Yay} />
+                )}
+                <div>
+                    <input className="mt-6" type="range" min={0} max={1} step={0.01} value={audioLevel} onChange={(e) => {
+                        try {
+                            setAudioLevel(e.target.value)
+                        }
+                        catch (error) {
+                            console.error(error)
+                        }
+                    }
+                    } />
+                </div>
+                <div className=" text-3xl text-white flex flex-col gap-3 mb-6">
+                    <h2 className="flex text-center w-full">{questions[questionId].choices[questions[questionId].correct - 1]}</h2>
+                    <h2 className="flex text-center w-full">{`Current Level is : ${currentLevel}`}</h2>
+                </div> */}
             </div>
-            <div>
-                <table id="maze"  >
-                    <tbody >
-                        {maze.map((row, i) => (
-                            <tr key={`row-${i}`}>
-                                {row.map((cell, j) => (
-                                    <td key={`cell-${i}-${j}`} className={makeClassName(i, j)}>
-                                        <div />
-                                    </td>
-                                ))}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <div className=" text-3xl text-white flex flex-col gap-3 mb-6">
-                <h2 className="flex text-center w-52 ">'W' 'A' 'S' 'D'</h2>
-                <div className="flex gap-3 w-52 ">
-                    <BsFillArrowUpSquareFill className="text-emerald-400" />
-                    <BsFillArrowLeftSquareFill className="text-emerald-400" />
-                    <BsFillArrowDownSquareFill className="text-emerald-400" />
-                    <BsFillArrowRightSquareFill className="text-emerald-400" />
+            <div className="flex relative  items-center justify-center w-full h-screen border-none  focus:outline-none backgroundGame background-animate-slowest " onKeyDown={handleMove} tabIndex={-1}>
+                <div>
+                    <table id="maze"  >
+                        <tbody >
+                            {maze.map((row, i) => (
+                                <tr key={`row-${i}`}>
+                                    {row.map((cell, j) => (
+                                        <td key={`cell-${i}-${j}`} className={makeClassName(i, j)}>
+                                            <div />
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <div className=" text-3xl text-white flex flex-col gap-3 mb-6">
+                    <h2 className="flex text-center w-52 ">'W' 'A' 'S' 'D'</h2>
+                    <div className="flex gap-3 w-52 ">
+                        <BsFillArrowUpSquareFill className="text-emerald-400" />
+                        <BsFillArrowLeftSquareFill className="text-emerald-400" />
+                        <BsFillArrowDownSquareFill className="text-emerald-400" />
+                        <BsFillArrowRightSquareFill className="text-emerald-400" />
+                    </div>
                 </div>
             </div>
-        </div>
+        </Suspense>
     );
 }
