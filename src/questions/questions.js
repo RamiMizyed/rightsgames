@@ -34,12 +34,12 @@ const questions = [
 		question: 'Which child right does the following picture represent?',
 		imgSrc: 'img3',
 		imgPath: '../assets/img/image26.png',
+		correct: '3',
 		choices: [
 			'RIGHTS OF REFUGEE CHILDREN',
 			'RIGHT TO PROTECTION FROM SEXUAL ABUSE',
 			'RIGHTS OF CHILDREN WITH DISABILITIES',
 		],
-		correct: '3',
 		correctAlert:
 			'Excellent! 😀. Every child with a disability should enjoy the best possible life in society. Governments should remove all obstacles for children with disabilities to become independent and to participate actively in the community.',
 		wrongAlert: 'Not quite! Give it another try 😺',

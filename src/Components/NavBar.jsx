@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useCycle } from "framer-motion";
 import { MenuToggle } from "./MenuToggle";
+import { MdAudiotrack } from 'react-icons/md'
+import { AiOutlineSmile } from 'react-icons/ai'
 import SongFirst from '../assets/Audio/GameMusic1.mp3'
 import Yay from '../assets/Audio/yaay.mp3'
 import AudioPlayer from "../Components/AudioPlayer";
 export const HamburgerMenu = ({ status }) => {
-    const [audioLevel, setAudioLevel] = useState(0.1)
+    const [audioLevel, setAudioLevel] = useState(0.5)
 
     const [isOpen, toggleOpen] = useCycle(false, true);
     let activeClassName =
@@ -32,11 +34,25 @@ export const HamburgerMenu = ({ status }) => {
                         transition={{
                             duration: 0.5,
                         }}
-                        className="bg-gradient-to-br from-blue-600 to-fuchsia-700 rounded-l-lg  absolute  background-animate-navBar w-[100%] lg:w-[40%] md:w-[60%] sm:w-[70%] h-full right-0"
+                        className=" rounded-l-lg bg-slate-100  absolute  background-animate-navBar w-[100%] lg:w-[40%] md:w-[60%] sm:w-[70%] h-full right-0"
                     >
-                        <motion.div className="flex justify-between items-center p-6 text-white shadow-md h-[5rem] sm:h-[6rem] rounded-b-lg shadow-white/50">
-                            <div>
-                                <input className="mt-6" type="range" min={0} max={1} step={0.01} value={audioLevel} onChange={(e) => {
+                        <motion.div className="flex bg-gradient-to-br from-blue-600 to-fuchsia-700 justify-between items-center p-6 text-white shadow-sm shadow-black h-[5rem] sm:h-[6rem] rounded-b-lg">
+                            <div className="flex items-center">
+                                <AiOutlineSmile className="text-4xl text-emerald-500" />
+                                <h1>
+                                    Settings
+                                </h1>
+                                <AiOutlineSmile className="text-4xl text-rose-500" />
+                            </div>
+                        </motion.div>
+                        <motion.div className="flex flex-col items-start p-6  justify-between  h-[calc(100vh-6rem)]">
+                            <div className="w-[50%]">
+                                <div className="flex items-start justify-start">
+                                    <MdAudiotrack className="text-emerald-600 text-4xl" />
+                                    <h3 className="text-black text-start text-2xl ">Audio Level</h3>
+                                    <MdAudiotrack className="text-orange-600 text-4xl" />
+                                </div>
+                                <input className="mt-3 w-[80%] " type="range" min={0} max={1} step={0.01} value={audioLevel} onChange={(e) => {
                                     try {
                                         setAudioLevel(e.target.value)
                                     }
@@ -46,9 +62,6 @@ export const HamburgerMenu = ({ status }) => {
                                 }
                                 } />
                             </div>
-
-                        </motion.div>
-                        <motion.div className="grid justify-between  h-[calc(100vh-6rem)]">
 
                         </motion.div>
                     </motion.div>

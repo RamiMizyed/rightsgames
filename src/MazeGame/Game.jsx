@@ -3,7 +3,7 @@ import { generateMaze, solve } from "./utils";
 import { BsFillArrowDownSquareFill, BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill, BsFillArrowUpSquareFill } from 'react-icons/bs'
 import { questions } from '../questions/questions';
 import { HamburgerMenu } from '../Components/NavBar';
-
+import image1 from '../assets/crafty-protecting-your-health-with-natural-remedies-1.png'
 
 import LoadingAnimation from "../Components/LoadingAnimation";
 export default function Game() {
@@ -12,7 +12,7 @@ export default function Game() {
     const [currentLevel, setCurrentLevel] = useState(1)
     const [status, setStatus] = useState("playing");
     // const [solved, setSolve] = useState(false)
-    const [size, setSize] = useState(4)
+    const [size, setSize] = useState(10)
     const [userPosition, setUserPosition] = useState([0, 0]);
     const maze = useMemo(() => generateMaze(size, size), [size, gameId]);
     const solution = useMemo(() => {
@@ -38,10 +38,10 @@ export default function Game() {
                     setCurrentLevel(1)
                 } else {
                     setQuestionId(questionId + 1)
-                    if (size < 8) {
+                    if (size < 9) {
                         setSize(size + 1)
                     } else {
-                        setSize(8)
+                        setSize(9)
                     }
                 }
                 setCurrentLevel(currentLevel + 1)
@@ -109,10 +109,15 @@ export default function Game() {
             <div className="w-full h-[100vh]">
                 <div className="fixed  z-50 top-0 left-0 p-6">
                     <HamburgerMenu status={status} />
-
                 </div>
-                <div className="flex relative  items-center justify-center w-full h-screen border-none  focus:outline-none backgroundGame background-animate-slowest " onKeyDown={handleMove} tabIndex={-1}>
-                    <div>
+                <div className="flex flex-col relative  items-center justify-center w-full h-screen border-none  focus:outline-none backgroundGame " onKeyDown={handleMove} tabIndex={-1}>
+                    <div className="bg-slate-100 mb-3 rounded-md w-fit  ">
+                        <h1 className="bg-gradient-to-r from-rose-600 via-purple-500  to-emerald-500 text-transparent bg-clip-text background-animate-longest">
+                            {questions[questionId].choices[questions[questionId].correct - 1]}
+                        </h1>
+                    </div>
+                    <div className="flex flex-col md:flex-row items-center gap-2 justify-center w-full">
+                        <img src={image1} alt="" className="w-[64px] md:w-[128px] lg:w-[256px]" />
                         <table id="maze"  >
                             <tbody >
                                 {maze.map((row, i) => (
@@ -127,15 +132,7 @@ export default function Game() {
                             </tbody>
                         </table>
                     </div>
-                    <div className=" text-3xl text-white flex flex-col gap-3 mb-6">
-                        <h2 className="flex text-center w-52 ">'W' 'A' 'S' 'D'</h2>
-                        <div className="flex gap-3 w-52 ">
-                            <BsFillArrowUpSquareFill className="text-emerald-400" />
-                            <BsFillArrowLeftSquareFill className="text-emerald-400" />
-                            <BsFillArrowDownSquareFill className="text-emerald-400" />
-                            <BsFillArrowRightSquareFill className="text-emerald-400" />
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </Suspense>
