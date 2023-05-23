@@ -7,7 +7,7 @@ import SongFirst from '../assets/Audio/GameMusic1.mp3'
 import Yay from '../assets/Audio/yaay.mp3'
 import AudioPlayer from "../Components/AudioPlayer";
 export const HamburgerMenu = ({ status }) => {
-    const [audioLevel, setAudioLevel] = useState(0.5)
+    const [audioLevel, setAudioLevel] = useState(0.1)
 
     const [isOpen, toggleOpen] = useCycle(false, true);
     let activeClassName =

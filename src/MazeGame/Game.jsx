@@ -12,7 +12,7 @@ export default function Game() {
     const [currentLevel, setCurrentLevel] = useState(1)
     const [status, setStatus] = useState("playing");
     // const [solved, setSolve] = useState(false)
-    const [size, setSize] = useState(10)
+    const [size, setSize] = useState(4)
     const [userPosition, setUserPosition] = useState([0, 0]);
     const maze = useMemo(() => generateMaze(size, size), [size, gameId]);
     const solution = useMemo(() => {
@@ -37,11 +37,10 @@ export default function Game() {
                     setSize(4)
                     setCurrentLevel(1)
                 } else {
-                    setQuestionId(questionId + 1)
-                    if (size < 9) {
+                    if (size < 10)
                         setSize(size + 1)
-                    } else {
-                        setSize(9)
+                    else {
+                        setSize(4)
                     }
                 }
                 setCurrentLevel(currentLevel + 1)
